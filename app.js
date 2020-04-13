@@ -45,8 +45,8 @@ rl.on('close', () => { //'close' イベントは、全ての行を読み込み�
         比較関数では、
         ここで、pair1,pair2にはそれぞれ
       */
-      return pair2[1].change - pair1[1].change;
-      /*比較関数では以下のように並びを設定できる。ここでは、pair2-pair1>0、つまり正の数ということで降順にしている。
+      return pair1[1].change - pair2[1].change;
+      /*比較関数では以下のように並びを設定できる。ここでは、pair1-pair2<0、つまり負の数ということで昇順にしている。
       function compare(a, b) {
         if (ある順序の基準において a が b より小) {
           return -1;
@@ -59,8 +59,8 @@ rl.on('close', () => { //'close' イベントは、全ての行を読み込み�
       }
       */
   });
-  const rankingStrings = rankingArray.map(([key, value]) => {
-      return key + ': ' + value.popu10 + '=>' + value.popu15 + '変化率：' + value.change;
+  const rankingStrings = rankingArray.map(([key, value], i) => {
+      return (i + 1) + '位' + key + ': ' + value.popu10 + '=>' + value.popu15 + '変化率：' + value.change;
   });
       /*「連想配列のMap」と「map関数」は別モン
          map関数は、Arrayの要素それぞれを、与えられた関数を適用した内容に変換するというもの。
